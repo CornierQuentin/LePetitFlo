@@ -21,62 +21,68 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="Le Petit Flo"
+        android:textColor="#707070"
         android:textSize="38sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#707070"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/custom_button"
         android:fontFamily="sans-serif"
         android:text="Lancer le dé"
+        android:textAllCaps="false"
+        android:textColor="#707070"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="parent"
-        android:textAllCaps="false"
-        android:textColor="#707070"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintWidth_percent="0.8" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.13"
         app:srcCompat="@drawable/arrow" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.13"
         app:srcCompat="@drawable/settings" />
 
     <View
         android:id="@+id/case7"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/normal_case"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.09"
         app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toStartOf="@+id/case8"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.00999999"
+        app:layout_constraintWidth_percent="0.15" />
 
     <TextView
         android:id="@+id/text7"
@@ -92,10 +98,12 @@
 
     <View
         android:id="@+id/case8"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
-        app:layout_constraintStart_toEndOf="@+id/case7"
+        app:layout_constraintEnd_toStartOf="@+id/case9"
         app:layout_constraintTop_toTopOf="@+id/case7" />
 
     <TextView
@@ -112,11 +120,14 @@
 
     <View
         android:id="@+id/case9"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/normal_case"
-        app:layout_constraintStart_toEndOf="@+id/case8"
-        app:layout_constraintTop_toTopOf="@+id/case7" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/case7"
+        app:layout_constraintWidth_percent="0.15" />
 
     <TextView
         android:id="@+id/text9"
@@ -124,7 +135,7 @@
         android:layout_height="wrap_content"
         android:text="Reculer\nde 2 cases"
         android:textAlignment="center"
-        android:textSize="10sp"
+        android:textSize="9sp"
         app:layout_constraintBottom_toBottomOf="@+id/case9"
         app:layout_constraintEnd_toEndOf="@+id/case9"
         app:layout_constraintStart_toStartOf="@+id/case9"
@@ -144,8 +155,10 @@
 
     <View
         android:id="@+id/case10"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toEndOf="@+id/case9"
         app:layout_constraintTop_toTopOf="@+id/case7" />
@@ -164,8 +177,10 @@
 
     <View
         android:id="@+id/case11"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toEndOf="@+id/case10"
         app:layout_constraintTop_toTopOf="@+id/case7" />
@@ -183,8 +198,10 @@
         app:layout_constraintTop_toTopOf="@+id/case11" />
     <View
         android:id="@+id/case12"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case11"
         app:layout_constraintTop_toBottomOf="@+id/case11" />
@@ -203,8 +220,10 @@
 
     <View
         android:id="@+id/case13"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case11"
         app:layout_constraintTop_toBottomOf="@+id/case12" />
@@ -223,8 +242,10 @@
 
     <View
         android:id="@+id/case14"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case11"
         app:layout_constraintTop_toBottomOf="@+id/case13" />
@@ -236,15 +257,17 @@
         android:rotation="90"
         android:text="Repos"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/case14"
         app:layout_constraintEnd_toEndOf="@+id/case14"
         app:layout_constraintTop_toTopOf="@+id/case14" />
 
     <View
         android:id="@+id/case15"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case11"
         app:layout_constraintTop_toBottomOf="@+id/case14" />
@@ -263,8 +286,10 @@
 
     <View
         android:id="@+id/case16"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case11"
         app:layout_constraintTop_toBottomOf="@+id/case15" />
@@ -283,8 +308,10 @@
 
     <View
         android:id="@+id/case17"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case11"
         app:layout_constraintTop_toBottomOf="@+id/case16" />
@@ -303,8 +330,10 @@
 
     <View
         android:id="@+id/case18"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case11"
         app:layout_constraintTop_toBottomOf="@+id/case17" />
@@ -323,8 +352,10 @@
 
     <View
         android:id="@+id/case19"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintEnd_toStartOf="@+id/case18"
         app:layout_constraintTop_toTopOf="@+id/case18" />
@@ -355,8 +386,10 @@
 
     <View
         android:id="@+id/case20"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintEnd_toStartOf="@+id/case19"
         app:layout_constraintTop_toTopOf="@+id/case19" />
@@ -375,8 +408,10 @@
 
     <View
         android:id="@+id/case21"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case20"
         app:layout_constraintBottom_toTopOf="@+id/case20" />
@@ -395,8 +430,10 @@
 
     <View
         android:id="@+id/case22"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case20"
         app:layout_constraintBottom_toTopOf="@+id/case21" />
@@ -415,8 +452,10 @@
 
     <View
         android:id="@+id/case23"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintBottom_toTopOf="@+id/case22"
         app:layout_constraintStart_toStartOf="@+id/case20" />
@@ -427,7 +466,7 @@
         android:layout_height="wrap_content"
         android:text="Reculer\nde 5 cases"
         android:textAlignment="center"
-        android:textSize="10sp"
+        android:textSize="9sp"
         app:layout_constraintBottom_toBottomOf="@+id/case23"
         app:layout_constraintEnd_toEndOf="@+id/case23"
         app:layout_constraintStart_toStartOf="@+id/case23"
@@ -436,8 +475,10 @@
 
     <View
         android:id="@+id/case24"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case20"
         app:layout_constraintBottom_toTopOf="@+id/case23" />
@@ -456,8 +497,10 @@
 
     <View
         android:id="@+id/case6"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case7"
         app:layout_constraintTop_toBottomOf="@+id/case7" />
@@ -476,8 +519,10 @@
 
     <View
         android:id="@+id/case5"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case7"
         app:layout_constraintTop_toBottomOf="@+id/case6" />
@@ -495,8 +540,10 @@
         app:layout_constraintTop_toTopOf="@+id/case5" />
     <View
         android:id="@+id/case4"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case7"
         app:layout_constraintTop_toBottomOf="@+id/case5" />
@@ -515,8 +562,10 @@
 
     <View
         android:id="@+id/case3"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case7"
         app:layout_constraintTop_toBottomOf="@+id/case4" />
@@ -535,8 +584,10 @@
 
     <View
         android:id="@+id/case2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case7"
         app:layout_constraintTop_toBottomOf="@+id/case3" />
@@ -555,8 +606,10 @@
 
     <View
         android:id="@+id/case1"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/normal_case"
         app:layout_constraintStart_toStartOf="@+id/case7"
         app:layout_constraintTop_toBottomOf="@+id/case2" />
@@ -575,8 +628,10 @@
 
     <View
         android:id="@+id/caseD"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/start_case"
         app:layout_constraintStart_toStartOf="@+id/case7"
         app:layout_constraintTop_toBottomOf="@+id/case1" />
@@ -595,8 +650,10 @@
 
     <View
         android:id="@+id/caseF"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintWidth_percent="0.15"
         android:background="@drawable/end_case"
         app:layout_constraintStart_toStartOf="@+id/case20"
         app:layout_constraintBottom_toTopOf="@+id/case24" />
@@ -612,4 +669,32 @@
         app:layout_constraintEnd_toEndOf="@+id/caseF"
         app:layout_constraintStart_toStartOf="@+id/caseF"
         app:layout_constraintTop_toTopOf="@+id/caseF" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.86730504" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.20924574" />
 </androidx.constraintlayout.widget.ConstraintLayout>
