@@ -1,39 +1,69 @@
 package fr.cornier.lepetitflo
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
 
+    var matchInProgress = 0
+
+    var testMalusCase = 0
+
     var playerNumber = 4
+
+    private var diceResult = 0
 
     val set = ConstraintSet()
 
     lateinit var caseList: Array<View>
-    lateinit var playerList: Array<View>
+    private lateinit var playerList: Array<View>
 
     var playerScoreList = mutableListOf(0, 0, 0, 0)
 
     var playerFinishTest = arrayOf(0, 0, 0, 0)
 
-    var playerTurn = 0
+    var textList = arrayOf("Case\nDépart", "40\nFentes\nSautées", "30\nBurpees", "2 min\nMountain\nClimber", "40\nSquats Sautés", "2 min\nGainage\nPendule", "30\nFrog\nJumps", "100\nCrunchs", "3 min\nPapillion", "Reculer\nDe\n2 Cases", "2 min\nGainage", "BSU\nSquat", "30\nPompes", "2 min\nChaise", "Repos", "40\nDeeps", "BSU\nAbdos", "30\nFrog\nJumps", "40\nFentes\nSautées", "Retour à \nla Case\nDépart", "2 min\nCrunch\nBicylcle", "50\nSquats", "100\nCrunchs", "Reculer\nDe\n5 Cases", "4 min\nGainage", "Fin")
+
+    private var playerTurn = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         caseList = arrayOf(caseD, case1, case2, case3, case4, case5, case6, case7, case8, case9, case10, case11, case12, case13, case14, case15, case16, case17, case18, case19, case20, case21, case22, case23, case24, caseF)
         playerList = arrayOf(player1, player2, player3, player4)
+
+        blurLayout.visibility = View.INVISIBLE
     }
-    fun test (button: View) {
-        val result = (1..6).random()
+
+
+    fun onDiceButtonClick(button: View) {
+        diceResult = (1..6).random()
+
+        dé.visibility = View.GONE
+
+        diceResultText.text = "$diceResult"
+        diceResultText.visibility = View.VISIBLE
+        caseAffichage.visibility = View.VISIBLE
+        blurLayout.visibility = View.VISIBLE
+        continueDice.visibility = View.VISIBLE
+    }
+
+    fun onContinueDiceButtonClick(button: View) {
+        dé.visibility = View.VISIBLE
+
+        diceResultText.visibility = View.INVISIBLE
+        caseAffichage.visibility = View.INVISIBLE
+        blurLayout.visibility = View.INVISIBLE
+        continueDice.visibility = View.INVISIBLE
 
         var testCaseClear = 0
+
+        testMalusCase = 0
 
         if (playerFinishTest[playerTurn] == 1) {
             while (playerFinishTest[playerTurn] == 1) {
@@ -44,19 +74,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        var test10 = playerScoreList[playerTurn]
-        Log.i("Test", "playerScoreList[playerPlay] avant + : $test10")
-        if (playerScoreList[playerTurn] + result <= 25) {
-            playerScoreList[playerTurn] += result
-            Log.i("Test", "IF")
-        } else if (playerScoreList[playerTurn] + result > 25) {
-            playerScoreList[playerTurn] = 25
-            Log.i("Test", "ELSE IF")
-        }else {
-            Log.i("Test", "ELSE")
+
+        when {
+            playerScoreList[playerTurn] + diceResult <= 25 -> {
+                playerScoreList[playerTurn] += diceResult
+            }
+            playerScoreList[playerTurn] + diceResult > 25 -> {
+                playerScoreList[playerTurn] = 25
+            }
         }
-        var test11 = playerScoreList[playerTurn]
-        Log.i("Test", "playerScoreList[playerPlay] aprés + : $test11")
 
         if (playerScoreList[playerTurn] == playerScoreList[0]) {
             testCaseClear += 1
@@ -71,6 +97,71 @@ class MainActivity : AppCompatActivity() {
             testCaseClear += 1
         }
 
+        when {
+            playerScoreList[playerTurn] == 9 -> {
+                testMalusCase = 1
+
+                afficherCaseMalus(playerScoreList[playerTurn])
+
+                playerScoreList[playerTurn] = playerScoreList[playerTurn] - 2
+
+                movePlayer(playerTurn, testCaseClear)
+            }
+            playerScoreList[playerTurn] == 19 -> {
+                testMalusCase = 1
+
+                afficherCaseMalus(playerScoreList[playerTurn])
+
+                playerScoreList[playerTurn] = 0
+
+                movePlayer(playerTurn, testCaseClear)
+            }
+            playerScoreList[playerTurn] == 23 -> {
+                testMalusCase = 1
+
+                afficherCaseMalus(playerScoreList[playerTurn])
+
+                playerScoreList[playerTurn] = playerScoreList[playerTurn] - 5
+
+                movePlayer(playerTurn, testCaseClear)
+            }
+            else -> {
+                movePlayer(playerTurn, testCaseClear)
+            }
+        }
+
+        if (testMalusCase == 0) {
+            afficherCase(playerScoreList[playerTurn])
+        }
+
+        if (playerScoreList[playerTurn] >= 25) {
+            playerFinishTest[playerTurn] = 1
+            playerNumber -= 1
+        }
+
+        if (playerTurn in 0..2) {
+            playerTurn += 1
+        }else {
+            playerTurn = 0
+        }
+
+        if (playerFinishTest[0] == 1 && playerFinishTest[1] == 1 && playerFinishTest[2] == 1 && playerFinishTest[3] == 1) {
+            dé.visibility = View.INVISIBLE
+            continuer.visibility = View.GONE
+
+            blurLayout.visibility = View.VISIBLE
+            restart.visibility = View.VISIBLE
+
+            textAffichage.text = "Fini, Bravo !!"
+
+            textAffichage.visibility = View.VISIBLE
+            caseAffichage.visibility = View.VISIBLE
+
+            matchInProgress = 0
+        }
+    }
+
+    private fun movePlayer(playerTurn:Int, testCaseClear:Int) {
         when (testCaseClear) {
             1 -> {
                 set.clone(constraintLayout)
@@ -145,23 +236,65 @@ class MainActivity : AppCompatActivity() {
                 set.applyTo(constraintLayout)
             }
         }
-        var test0 = playerTurn
-        Log.i("Test", "playerTurn : $test0")
-
-        if (playerScoreList[playerTurn] >= 25) {
-            playerFinishTest[playerTurn] = 1
-            playerNumber -= 1
-        }
-
-        if (playerTurn in 0..2) {
-            playerTurn += 1
-        }else {
-            playerTurn = 0
-        }
-
-        if (playerFinishTest[0] == 1 && playerFinishTest[1] == 1 && playerFinishTest[2] == 1 && playerFinishTest[3] == 1) {
-            recreate()
-        }
     }
 
+    private fun afficherCase(playerScore:Int) {
+        dé.visibility = View.GONE
+
+        blurLayout.visibility = View.VISIBLE
+        continuer.visibility = View.VISIBLE
+
+        textAffichage.text = textList[playerScore]
+
+        textAffichage.visibility = View.VISIBLE
+        caseAffichage.visibility = View.VISIBLE
+    }
+
+    private fun afficherCaseMalus(playerScore:Int) {
+        dé.visibility = View.GONE
+        continueMalus.visibility = View.VISIBLE
+
+        blurLayout.visibility = View.VISIBLE
+
+        textAffichage.text = textList[playerScore]
+
+        textAffichage.visibility = View.VISIBLE
+        caseAffichage.visibility = View.VISIBLE
+    }
+
+    fun onRestartButtonClick(button: View) {
+        recreate()
+    }
+
+    fun onContinueButtonClick(button: View) {
+        dé.visibility = View.VISIBLE
+
+        blurLayout.visibility = View.INVISIBLE
+        continuer.visibility = View.INVISIBLE
+
+        textAffichage.visibility = View.INVISIBLE
+        caseAffichage.visibility = View.INVISIBLE
+    }
+
+    fun onContinueMalusButtonClick(button: View) {
+        var playerPlay = playerTurn
+
+        continuer.visibility = View.VISIBLE
+        continueMalus.visibility = View.GONE
+
+        blurLayout.visibility = View.VISIBLE
+        continuer.visibility = View.VISIBLE
+
+        do {
+            if (playerPlay in 1..3) {
+                playerPlay -= 1
+            } else {
+                playerPlay = 3
+            }
+        } while (playerFinishTest[playerPlay] == 1)
+
+        textAffichage.text = textList[playerScoreList[playerPlay]]
+        textAffichage.visibility = View.VISIBLE
+        caseAffichage.visibility = View.VISIBLE
+    }
 }
