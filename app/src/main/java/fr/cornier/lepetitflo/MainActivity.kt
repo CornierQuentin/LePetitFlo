@@ -1,7 +1,7 @@
 package fr.cornier.lepetitflo
 
-import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
@@ -44,24 +44,19 @@ class MainActivity : AppCompatActivity() {
     fun onDiceButtonClick(button: View) {
         diceResult = (1..6).random()
 
-        dé.visibility = View.GONE
+        displayDiceResult(diceResult)
 
-        diceResultText.text = "$diceResult"
-        diceResultText.visibility = View.VISIBLE
-        caseAffichage.visibility = View.VISIBLE
-        blurLayout.visibility = View.VISIBLE
-        continueDice.visibility = View.VISIBLE
+        Handler().postDelayed(
+            {
+                hideDiceResult()
+                gameTurn()
+            },
+            1000
+        )
     }
 
-    fun onContinueDiceButtonClick(button: View) {
-        dé.visibility = View.VISIBLE
-
-        diceResultText.visibility = View.INVISIBLE
-        caseAffichage.visibility = View.INVISIBLE
-        blurLayout.visibility = View.INVISIBLE
-        continueDice.visibility = View.INVISIBLE
-
-        var testCaseClear = 0
+    private fun gameTurn() {
+        var testCaseClear: Int
 
         testMalusCase = 0
 
@@ -74,6 +69,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        if (playerScoreList[playerTurn] != 0 && playerScoreList[playerTurn] != 25) {
+            caseList[playerScoreList[playerTurn]].setBackgroundResource(R.drawable.normal_case)
+        }
 
         when {
             playerScoreList[playerTurn] + diceResult <= 25 -> {
@@ -84,19 +82,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        if (playerScoreList[playerTurn] == playerScoreList[0]) {
-            testCaseClear += 1
-        }
-        if (playerScoreList[playerTurn] == playerScoreList[1]) {
-            testCaseClear += 1
-        }
-        if (playerScoreList[playerTurn] == playerScoreList[2]) {
-            testCaseClear += 1
-        }
-        if (playerScoreList[playerTurn] == playerScoreList[3]) {
-            testCaseClear += 1
-        }
-
         when {
             playerScoreList[playerTurn] == 9 -> {
                 testMalusCase = 1
@@ -104,6 +89,8 @@ class MainActivity : AppCompatActivity() {
                 afficherCaseMalus(playerScoreList[playerTurn])
 
                 playerScoreList[playerTurn] = playerScoreList[playerTurn] - 2
+
+                testCaseClear = isCaseClear()
 
                 movePlayer(playerTurn, testCaseClear)
             }
@@ -114,6 +101,8 @@ class MainActivity : AppCompatActivity() {
 
                 playerScoreList[playerTurn] = 0
 
+                testCaseClear = isCaseClear()
+
                 movePlayer(playerTurn, testCaseClear)
             }
             playerScoreList[playerTurn] == 23 -> {
@@ -123,15 +112,23 @@ class MainActivity : AppCompatActivity() {
 
                 playerScoreList[playerTurn] = playerScoreList[playerTurn] - 5
 
+                testCaseClear = isCaseClear()
+
                 movePlayer(playerTurn, testCaseClear)
             }
             else -> {
+                testCaseClear = isCaseClear()
+                
                 movePlayer(playerTurn, testCaseClear)
             }
         }
 
         if (testMalusCase == 0) {
             afficherCase(playerScoreList[playerTurn])
+        }
+
+        if (playerScoreList[playerTurn] != 0 && playerScoreList[playerTurn] != 25) {
+            caseList[playerScoreList[playerTurn]].setBackgroundResource(R.drawable.player_case)
         }
 
         if (playerScoreList[playerTurn] >= 25) {
@@ -245,21 +242,29 @@ class MainActivity : AppCompatActivity() {
         continuer.visibility = View.VISIBLE
 
         textAffichage.text = textList[playerScore]
-
         textAffichage.visibility = View.VISIBLE
+
+        caseAffichage.setBackgroundResource(R.drawable.affichage_case)
         caseAffichage.visibility = View.VISIBLE
     }
 
     private fun afficherCaseMalus(playerScore:Int) {
         dé.visibility = View.GONE
-        continueMalus.visibility = View.VISIBLE
 
         blurLayout.visibility = View.VISIBLE
 
         textAffichage.text = textList[playerScore]
-
         textAffichage.visibility = View.VISIBLE
+
+        caseAffichage.setBackgroundResource(R.drawable.malus_affichage_case)
         caseAffichage.visibility = View.VISIBLE
+
+        Handler().postDelayed(
+            {
+                displayCaseAfterMalus()
+            },
+            2000
+        )
     }
 
     fun onRestartButtonClick(button: View) {
@@ -276,11 +281,10 @@ class MainActivity : AppCompatActivity() {
         caseAffichage.visibility = View.INVISIBLE
     }
 
-    fun onContinueMalusButtonClick(button: View) {
+    private fun displayCaseAfterMalus() {
         var playerPlay = playerTurn
 
         continuer.visibility = View.VISIBLE
-        continueMalus.visibility = View.GONE
 
         blurLayout.visibility = View.VISIBLE
         continuer.visibility = View.VISIBLE
@@ -295,11 +299,48 @@ class MainActivity : AppCompatActivity() {
 
         textAffichage.text = textList[playerScoreList[playerPlay]]
         textAffichage.visibility = View.VISIBLE
+
+        caseAffichage.setBackgroundResource(R.drawable.affichage_case)
         caseAffichage.visibility = View.VISIBLE
     }
 
-    private fun changeButtonColor(playerTurn:Int) {
+    private fun displayDiceResult (diceResult:Int) {
+        dé.visibility = View.GONE
 
+        diceResultText.text = "$diceResult"
+        diceResultText.visibility = View.VISIBLE
+        diceAffichage.visibility = View.VISIBLE
+        blurLayout.visibility = View.VISIBLE
+    }
+
+    private fun hideDiceResult () {
+        dé.visibility = View.VISIBLE
+
+        diceResultText.visibility = View.INVISIBLE
+        diceAffichage.visibility = View.INVISIBLE
+        blurLayout.visibility = View.INVISIBLE
+    }
+
+    private fun changeButtonColor(playerTurn:Int) {
         dé.setBackgroundResource(buttonList[playerTurn])
+    }
+
+    private fun isCaseClear() : Int {
+        var testCaseClear = 0
+
+        if (playerScoreList[playerTurn] == playerScoreList[0]) {
+            testCaseClear += 1
+        }
+        if (playerScoreList[playerTurn] == playerScoreList[1]) {
+            testCaseClear += 1
+        }
+        if (playerScoreList[playerTurn] == playerScoreList[2]) {
+            testCaseClear += 1
+        }
+        if (playerScoreList[playerTurn] == playerScoreList[3]) {
+            testCaseClear += 1
+        }
+
+        return testCaseClear
     }
 }

@@ -798,44 +798,6 @@
         app:layout_constraintTop_toTopOf="@+id/guideline"
         app:layout_constraintWidth_percent="0.8" />
 
-    <Button
-        android:id="@+id/continueMalus"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/normal_button"
-        android:fontFamily="sans-serif"
-        android:onClick="onContinueMalusButtonClick"
-        android:text="Continuer"
-        android:textAllCaps="false"
-        android:textColor="#707070"
-        android:textSize="32sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:layout_constraintWidth_percent="0.8" />
-
-    <Button
-        android:id="@+id/continueDice"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/normal_button"
-        android:fontFamily="sans-serif"
-        android:onClick="onContinueDiceButtonClick"
-        android:text="Continuer"
-        android:textAllCaps="false"
-        android:textColor="#707070"
-        android:textSize="32sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:layout_constraintWidth_percent="0.8" />
-
     <View
         android:id="@+id/caseAffichage"
         android:layout_width="0dp"
@@ -856,12 +818,26 @@
         android:layout_height="wrap_content"
         android:text="Text Affichage"
         android:textAlignment="center"
-        android:textSize="40sp"
+        android:textSize="50sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/caseAffichage"
         app:layout_constraintEnd_toEndOf="@+id/caseAffichage"
         app:layout_constraintStart_toStartOf="@+id/caseAffichage"
         app:layout_constraintTop_toTopOf="@+id/caseAffichage" />
+
+    <View
+        android:id="@+id/diceAffichage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/dice_affichage_case"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39"
+        app:layout_constraintWidth_percent="0.45" />
 
     <TextView
         android:id="@+id/diceResultText"
@@ -873,6 +849,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/caseAffichage"
         app:layout_constraintEnd_toEndOf="@+id/caseAffichage"
         app:layout_constraintStart_toStartOf="@+id/caseAffichage"
-        app:layout_constraintTop_toTopOf="@+id/caseAffichage" />
+        app:layout_constraintTop_toTopOf="@+id/caseAffichage"
+        android:textColor="#ff7f00" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
