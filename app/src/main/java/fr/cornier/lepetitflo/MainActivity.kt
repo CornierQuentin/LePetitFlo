@@ -10,8 +10,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var matchInProgress = 0
-
     var testMalusCase = 0
 
     var playerNumber = 4
@@ -28,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     var playerFinishTest = arrayOf(0, 0, 0, 0)
 
     var textList = arrayOf("Case\nDépart", "40\nFentes\nSautées", "30\nBurpees", "2 min\nMountain\nClimber", "40\nSquats Sautés", "2 min\nGainage\nPendule", "30\nFrog\nJumps", "100\nCrunchs", "3 min\nPapillion", "Reculer\nDe\n2 Cases", "2 min\nGainage", "BSU\nSquat", "30\nPompes", "2 min\nChaise", "Repos", "40\nDeeps", "BSU\nAbdos", "30\nFrog\nJumps", "40\nFentes\nSautées", "Retour à \nla Case\nDépart", "2 min\nCrunch\nBicylcle", "50\nSquats", "100\nCrunchs", "Reculer\nDe\n5 Cases", "4 min\nGainage", "Fin")
+
+    var buttonList = arrayListOf(R.drawable.blue_button, R.drawable.green_button, R.drawable.yellow_button, R.drawable.red_button)
 
     private var playerTurn = 0
 
@@ -156,9 +156,9 @@ class MainActivity : AppCompatActivity() {
 
             textAffichage.visibility = View.VISIBLE
             caseAffichage.visibility = View.VISIBLE
-
-            matchInProgress = 0
         }
+
+        changeButtonColor(playerTurn)
     }
 
     private fun movePlayer(playerTurn:Int, testCaseClear:Int) {
@@ -296,5 +296,10 @@ class MainActivity : AppCompatActivity() {
         textAffichage.text = textList[playerScoreList[playerPlay]]
         textAffichage.visibility = View.VISIBLE
         caseAffichage.visibility = View.VISIBLE
+    }
+
+    private fun changeButtonColor(playerTurn:Int) {
+
+        dé.setBackgroundResource(buttonList[playerTurn])
     }
 }
