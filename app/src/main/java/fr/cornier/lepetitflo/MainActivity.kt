@@ -1,5 +1,6 @@
 package fr.cornier.lepetitflo
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -38,6 +39,15 @@ class MainActivity : AppCompatActivity() {
         playerList = arrayOf(player1, player2, player3, player4)
 
         blurLayout.visibility = View.INVISIBLE
+
+        getScore()
+
+        for (i in 0..3) {
+            movePlayer(i, i + 1)
+            if (playerScoreList[i] != 0 && playerScoreList[i] != 25) {
+                caseList[playerScoreList[i]].setBackgroundResource(R.drawable.player_case)
+            }
+        }
     }
 
 
@@ -67,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         No arguments*
 
         Effectue l'entièreté du tour d'un joueur.
-        Il vérifier que le joueur n'as pas déjà fini, si c'est le cas il passe au joueur d'après.
+        Il vérifie que le joueur n'a pas déjà fini, si c'est le cas il passe au joueur d'après.
         Il remet la couleur de bas de la case ou le joueur se trouve
         Il augmente le score du joueur.
         Il déplace le joueur jusqu'à sa case ne vérifiant si il n'est pas sur une case malus,
@@ -157,6 +167,8 @@ class MainActivity : AppCompatActivity() {
         isFinish()
 
         changeButtonColor()
+
+        saveScore()
     }
 
     private fun movePlayer(playerTurn:Int, testCaseClear:Int) {
@@ -167,78 +179,155 @@ class MainActivity : AppCompatActivity() {
         suivant le nombre de joueur déjà présent sur la case.
          */
 
-        when (testCaseClear) {
-            1 -> {
-                set.clone(constraintLayout)
-                set.connect(
-                    playerList[playerTurn].id,
-                    ConstraintSet.TOP,
-                    caseList[playerScoreList[playerTurn]].id,
-                    ConstraintSet.TOP,
-                    15
-                )
-                set.connect(
-                    playerList[playerTurn].id,
-                    ConstraintSet.START,
-                    caseList[playerScoreList[playerTurn]].id,
-                    ConstraintSet.START,
-                    20
-                )
-                set.applyTo(constraintLayout)
+        if (playerScoreList[playerTurn] != 0 && playerScoreList[playerTurn] != 25) {
+            when (testCaseClear) {
+                1 -> {
+                    set.clone(constraintLayout)
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.TOP,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.TOP,
+                        15
+                    )
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.START,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.START,
+                        20
+                    )
+                    set.applyTo(constraintLayout)
+                }
+                2 -> {
+                    set.clone(constraintLayout)
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.TOP,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.TOP,
+                        45
+                    )
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.START,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.START,
+                        20
+                    )
+                    set.applyTo(constraintLayout)
+                }
+                3 -> {
+                    set.clone(constraintLayout)
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.TOP,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.TOP,
+                        75
+                    )
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.START,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.START,
+                        20
+                    )
+                    set.applyTo(constraintLayout)
+                }
+                4 -> {
+                    set.clone(constraintLayout)
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.TOP,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.TOP,
+                        105
+                    )
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.START,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.START,
+                        20
+                    )
+                    set.applyTo(constraintLayout)
+                }
             }
-            2 -> {
-                set.clone(constraintLayout)
-                set.connect(
-                    playerList[playerTurn].id,
-                    ConstraintSet.TOP,
-                    caseList[playerScoreList[playerTurn]].id,
-                    ConstraintSet.TOP,
-                    45
-                )
-                set.connect(
-                    playerList[playerTurn].id,
-                    ConstraintSet.START,
-                    caseList[playerScoreList[playerTurn]].id,
-                    ConstraintSet.START,
-                    20
-                )
-                set.applyTo(constraintLayout)
-            }
-            3 -> {
-                set.clone(constraintLayout)
-                set.connect(
-                    playerList[playerTurn].id,
-                    ConstraintSet.TOP,
-                    caseList[playerScoreList[playerTurn]].id,
-                    ConstraintSet.TOP,
-                    75
-                )
-                set.connect(
-                    playerList[playerTurn].id,
-                    ConstraintSet.START,
-                    caseList[playerScoreList[playerTurn]].id,
-                    ConstraintSet.START,
-                    20
-                )
-                set.applyTo(constraintLayout)
-            }
-            4 -> {
-                set.clone(constraintLayout)
-                set.connect(
-                    playerList[playerTurn].id,
-                    ConstraintSet.TOP,
-                    caseList[playerScoreList[playerTurn]].id,
-                    ConstraintSet.TOP,
-                    105
-                )
-                set.connect(
-                    playerList[playerTurn].id,
-                    ConstraintSet.START,
-                    caseList[playerScoreList[playerTurn]].id,
-                    ConstraintSet.START,
-                    20
-                )
-                set.applyTo(constraintLayout)
+        } else {
+            when (testCaseClear) {
+                1 -> {
+                    set.clone(constraintLayout)
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.TOP,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.TOP,
+                        25
+                    )
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.START,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.START,
+                        20
+                    )
+                    set.applyTo(constraintLayout)
+                }
+                2 -> {
+                    set.clone(constraintLayout)
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.TOP,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.TOP,
+                        110
+                    )
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.START,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.START,
+                        20
+                    )
+                    set.applyTo(constraintLayout)
+                }
+                3 -> {
+                    set.clone(constraintLayout)
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.TOP,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.TOP,
+                        25
+                    )
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.START,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.START,
+                        110
+                    )
+                    set.applyTo(constraintLayout)
+                }
+                4 -> {
+                    set.clone(constraintLayout)
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.TOP,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.TOP,
+                        110
+                    )
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.START,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.START,
+                        110
+                    )
+                    set.applyTo(constraintLayout)
+                }
             }
         }
     }
@@ -449,7 +538,7 @@ class MainActivity : AppCompatActivity() {
         /*
         No arguments
 
-        Si le joueur du playerTurn à déjà fini alors le playerTurn est augmenté ou remis à 0 jusqu'à ce que le joueur du playerTurn ai fini.
+        Si le joueur du playerTurn a déjà fini alors le playerTurn est augmenté ou remis à 0 jusqu'à ce que le joueur du playerTurn ai fini.
          */
 
         if (playerFinishTest[playerTurn] == 1) {
@@ -462,5 +551,33 @@ class MainActivity : AppCompatActivity() {
     fun onBackButtonClick(button: View) {
         val intent = Intent(this, MenuActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun saveScore() {
+        val sharedPreferences = getSharedPreferences("fr.cornier.lepetitflo", Context.MODE_PRIVATE).edit()
+        for (i in 0..3) {
+            sharedPreferences.putInt("score$i", playerScoreList[i])
+        }
+        sharedPreferences.putInt("playerTurn", playerTurn)
+        sharedPreferences.apply()
+    }
+
+    private fun getScore() {
+        val sharedPreferences = getSharedPreferences("fr.cornier.lepetitflo", Context.MODE_PRIVATE)
+        for (i in 0..3) {
+            playerScoreList[i] = sharedPreferences.getInt("score$i", 0)
+        }
+        playerTurn = sharedPreferences.getInt("playerTurn", 0)
+    }
+
+    fun onRestartIconClick(button: View) {
+        val sharedPreferences = getSharedPreferences("fr.cornier.lepetitflo", Context.MODE_PRIVATE).edit()
+        for (i in 0..3) {
+            sharedPreferences.putInt("score$i", 0)
+        }
+        sharedPreferences.putInt("playerTurn", 0)
+        sharedPreferences.apply()
+
+        recreate()
     }
 }
