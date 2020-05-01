@@ -1,5 +1,6 @@
 package fr.cornier.lepetitflo
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -456,5 +457,10 @@ class MainActivity : AppCompatActivity() {
                 nextPlayerTurn()
             }
         }
+    }
+
+    fun onBackButtonClick(button: View) {
+        val intent = Intent(this, MenuActivity::class.java)
+        startActivity(intent)
     }
 }
