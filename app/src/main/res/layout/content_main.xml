@@ -22,29 +22,29 @@
         android:id="@+id/backButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:onClick="onDrawerButtonClick"
         android:background="@drawable/image_button_background"
+        android:onClick="onDrawerButtonClick"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.13"
-        app:srcCompat="@drawable/arrow" />
+        app:srcCompat="@drawable/drawer" />
 
     <ImageButton
         android:id="@+id/restartButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:onClick="onRestartIconClick"
         android:background="@drawable/image_button_background"
+        android:onClick="onRestartIconClick"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toEndOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.13"
-        app:srcCompat="@drawable/arrow" />
+        app:srcCompat="@drawable/restart" />
 
     <TextView
         android:id="@+id/textView"
@@ -854,6 +854,6 @@
         app:layout_constraintEnd_toEndOf="@+id/caseAffichage"
         app:layout_constraintStart_toStartOf="@+id/caseAffichage"
         app:layout_constraintTop_toTopOf="@+id/caseAffichage"
-        android:textColor="#ff7f00" />
+        android:textColor="#E26313" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,15 +8,14 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlin.system.exitProcess
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -74,20 +73,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_profile -> {
-                Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
+            R.id.nav_restart -> {
+                val sharedPreferences = getSharedPreferences("fr.cornier.lepetitflo", Context.MODE_PRIVATE).edit()
+                for (i in 0..3) {
+                    sharedPreferences.putInt("score$i", 0)
+                }
+                sharedPreferences.putInt("playerTurn", 0)
+                sharedPreferences.apply()
+
+                recreate()
             }
-            R.id.nav_messages -> {
-                Toast.makeText(this, "Messages clicked", Toast.LENGTH_SHORT).show()
+            R.id.nav_player -> {
+                val intent = Intent(this, PlayerActivity::class.java)
+                startActivity(intent)
             }
-            R.id.nav_friends -> {
-                Toast.makeText(this, "Friends clicked", Toast.LENGTH_SHORT).show()
+            R.id.nav_index -> {
+                Toast.makeText(this, "Index clicked", Toast.LENGTH_SHORT).show()
             }
-            R.id.nav_update -> {
-                Toast.makeText(this, "Update clicked", Toast.LENGTH_SHORT).show()
+            R.id.nav_about -> {
+                Toast.makeText(this, "About clicked", Toast.LENGTH_SHORT).show()
             }
-            R.id.nav_logout -> {
-                Toast.makeText(this, "Sign out clicked", Toast.LENGTH_SHORT).show()
+            R.id.nav_quit -> {
+                Toast.makeText(this, "About clicked", Toast.LENGTH_SHORT).show()
+                finish()
+                exitProcess(0)
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
@@ -610,7 +619,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun onRestartIconClick(button: View) {
-        Log.i("Test", "restart")
         val sharedPreferences = getSharedPreferences("fr.cornier.lepetitflo", Context.MODE_PRIVATE).edit()
         for (i in 0..3) {
             sharedPreferences.putInt("score$i", 0)

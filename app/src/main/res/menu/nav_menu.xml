@@ -3,30 +3,30 @@
 
     <group>
         <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_profile"
-            android:title="Profile"/>
+            android:id="@+id/nav_restart"
+            android:icon="@drawable/ic_restart"
+            android:title="Redémarrer" />
         <item
-            android:id="@+id/nav_messages"
-            android:icon="@drawable/ic_messages"
-            android:title="Messages"/>
+            android:id="@+id/nav_player"
+            android:icon="@drawable/ic_player"
+            android:title="Joueur" />
         <item
-            android:id="@+id/nav_friends"
-            android:icon="@drawable/ic_friends"
-            android:title="Friends"/>
+            android:id="@+id/nav_index"
+            android:icon="@drawable/ic_index"
+            android:title="Index" />
     </group>
 
 
-    <item android:title="Account Settings">
+    <item android:title="Application Settings">
         <menu>
             <item
-                android:id="@+id/nav_update"
-                android:icon="@drawable/ic_update"
-                android:title="Update Profile"/>
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_about"
+                android:title="À Propos"/>
             <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_signout"
-                android:title="Sign Out"/>
+                android:id="@+id/nav_quit"
+                android:icon="@drawable/ic_quit"
+                android:title="Quitter"/>
         </menu>
     </item>
 </menu>
