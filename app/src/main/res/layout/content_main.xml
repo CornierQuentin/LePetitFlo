@@ -693,6 +693,7 @@
         android:layout_marginStart="7dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/player1"
+        android:visibility="invisible"
         app:layout_constraintHeight_percent="0.015"
         app:layout_constraintStart_toStartOf="@+id/caseD"
         app:layout_constraintTop_toTopOf="@+id/caseD"
@@ -703,36 +704,65 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="7dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/player2"
         app:layout_constraintHeight_percent="0.015"
         app:layout_constraintStart_toStartOf="@+id/caseD"
         app:layout_constraintTop_toTopOf="@+id/caseD"
-        app:layout_constraintWidth_percent="0.027" />
+        app:layout_constraintWidth_percent="0.027"
+        android:visibility="invisible"/>
 
     <View
         android:id="@+id/player3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/player3"
         app:layout_constraintHeight_percent="0.015"
         app:layout_constraintStart_toStartOf="@+id/caseD"
         app:layout_constraintTop_toTopOf="@+id/caseD"
-        app:layout_constraintWidth_percent="0.027" />
+        app:layout_constraintWidth_percent="0.027"
+        android:visibility="invisible"/>
 
     <View
         android:id="@+id/player4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/player4"
         app:layout_constraintHeight_percent="0.015"
         app:layout_constraintStart_toStartOf="@+id/caseD"
         app:layout_constraintTop_toTopOf="@+id/caseD"
-        app:layout_constraintWidth_percent="0.027" />
+        app:layout_constraintWidth_percent="0.027"
+        android:visibility="invisible"/>
+
+    <View
+        android:id="@+id/player5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/player5"
+        app:layout_constraintHeight_percent="0.015"
+        app:layout_constraintStart_toStartOf="@+id/caseD"
+        app:layout_constraintTop_toTopOf="@+id/caseD"
+        app:layout_constraintWidth_percent="0.027"
+        android:visibility="invisible"/>
+
+    <View
+        android:id="@+id/player6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/player6"
+        app:layout_constraintHeight_percent="0.015"
+        app:layout_constraintStart_toStartOf="@+id/caseD"
+        app:layout_constraintTop_toTopOf="@+id/caseD"
+        app:layout_constraintWidth_percent="0.027"
+        android:visibility="invisible"/>
 
     <io.alterac.blurkit.BlurLayout
         android:id="@+id/blurLayout"

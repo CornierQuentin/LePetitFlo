@@ -40,12 +40,12 @@ class PlayerActivity : AppCompatActivity() {
 
     fun onStartButtonClick(button: View) {
         val sharedPreferences = getSharedPreferences("fr.cornier.lepetitflo", Context.MODE_PRIVATE).edit()
-        for (i in 0..3) {
+        for (i in 0..5) {
             sharedPreferences.putInt("score$i", 0)
         }
         sharedPreferences.putInt("playerTurn", 0)
 
-        sharedPreferences.putInt("numberPickerValue", playerValue[numberPicker.value])
+        sharedPreferences.putInt("playerNumber", playerValue[numberPicker.value])
         sharedPreferences.apply()
 
         val pickerValue = playerValue[numberPicker.value]

@@ -20,10 +20,10 @@ import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    lateinit var toolbar: Toolbar
     lateinit var drawerLayout: DrawerLayout
     lateinit var navView: NavigationView
 
+    var isFinish = 0
 
     var testMalusCase = 0
 
@@ -34,13 +34,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var caseList: Array<View>
     private lateinit var playerList: Array<View>
 
-    var playerScoreList = mutableListOf(0, 0, 0, 0)
+    var playerNumber = 4
 
-    var playerFinishTest = arrayOf(0, 0, 0, 0)
+    var playerScoreList = mutableListOf(0, 0, 0, 0, 0, 0)
+
+    var playerFinishTest = arrayOf(1, 1, 1, 1, 1, 1)
 
     var textList = arrayOf("Case\nDépart", "40\nFentes\nSautées", "30\nBurpees", "2 min\nMountain\nClimber", "40\nSquats\nSautés", "2 min\nGainage\nPendule", "30\nFrog\nJumps", "100\nCrunchs", "3 min\nPapillion", "Reculer\nDe\n2 Cases", "2 min\nGainage", "BSU\nSquat", "30\nPompes", "2 min\nChaise", "Repos", "40\nDeeps", "BSU\nAbdos", "30\nFrog\nJumps", "40\nFentes\nSautées", "Retour à \nla Case\nDépart", "2 min\nCrunch\nBicylcle", "50\nSquats", "100\nCrunchs", "Reculer\nDe\n5 Cases", "4 min\nGainage", "Fin")
 
-    var buttonList = arrayListOf(R.drawable.blue_button, R.drawable.green_button, R.drawable.yellow_button, R.drawable.red_button)
+    var buttonList = arrayListOf(R.drawable.blue_button, R.drawable.green_button, R.drawable.yellow_button, R.drawable.red_button, R.drawable.orange_button, R.drawable.purple_button)
 
     private var playerTurn = 0
 
@@ -48,18 +50,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         caseList = arrayOf(caseD, case1, case2, case3, case4, case5, case6, case7, case8, case9, case10, case11, case12, case13, case14, case15, case16, case17, case18, case19, case20, case21, case22, case23, case24, caseF)
-        playerList = arrayOf(player1, player2, player3, player4)
+        playerList = arrayOf(player1, player2, player3, player4, player5, player6)
 
         blurLayout.visibility = View.INVISIBLE
 
-        getScore()
+        getPlayerNumber()
 
-        for (i in 0..3) {
-            movePlayer(i, i + 1)
-            if (playerScoreList[i] != 0 && playerScoreList[i] != 25) {
-                caseList[playerScoreList[i]].setBackgroundResource(R.drawable.player_case)
-            }
+        for (i in 0 until playerNumber) {
+            playerList[i].visibility = View.VISIBLE
+            playerFinishTest[i] = 0
         }
+
+        getScore()
 
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
@@ -217,13 +219,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             playerFinishTest[playerTurn] = 1
         }
 
-        nextPlayerTurn()
-
         isFinish()
+        if (isFinish == 0) {
+            nextPlayerTurn()
 
-        changeButtonColor()
+            changeButtonColor()
 
-        saveScore()
+            saveScore()
+        }
     }
 
     private fun movePlayer(playerTurn:Int, testCaseClear:Int) {
@@ -308,6 +311,42 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     )
                     set.applyTo(constraintLayout)
                 }
+                5 -> {
+                    set.clone(constraintLayout)
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.TOP,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.TOP,
+                        15
+                    )
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.END,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.START,
+                        20
+                    )
+                    set.applyTo(constraintLayout)
+                }
+                6 -> {
+                    set.clone(constraintLayout)
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.TOP,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.TOP,
+                        45
+                    )
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.END,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.START,
+                        20
+                    )
+                    set.applyTo(constraintLayout)
+                }
             }
         } else {
             when (testCaseClear) {
@@ -336,7 +375,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         ConstraintSet.TOP,
                         caseList[playerScoreList[playerTurn]].id,
                         ConstraintSet.TOP,
-                        110
+                        65
                     )
                     set.connect(
                         playerList[playerTurn].id,
@@ -354,6 +393,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         ConstraintSet.TOP,
                         caseList[playerScoreList[playerTurn]].id,
                         ConstraintSet.TOP,
+                        110
+                    )
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.START,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.START,
+                        20
+                    )
+                    set.applyTo(constraintLayout)
+                }
+                4 -> {
+                    set.clone(constraintLayout)
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.TOP,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.TOP,
                         25
                     )
                     set.connect(
@@ -365,7 +422,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     )
                     set.applyTo(constraintLayout)
                 }
-                4 -> {
+                5 -> {
+                    set.clone(constraintLayout)
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.TOP,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.TOP,
+                        65
+                    )
+                    set.connect(
+                        playerList[playerTurn].id,
+                        ConstraintSet.START,
+                        caseList[playerScoreList[playerTurn]].id,
+                        ConstraintSet.START,
+                        110
+                    )
+                    set.applyTo(constraintLayout)
+                }
+                6 -> {
                     set.clone(constraintLayout)
                     set.connect(
                         playerList[playerTurn].id,
@@ -439,6 +514,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         Redémarre l'activité
          */
 
+        val sharedPreferences = getSharedPreferences("fr.cornier.lepetitflo", Context.MODE_PRIVATE).edit()
+        for (i in 0..5) {
+            sharedPreferences.putInt("score$i", 0)
+        }
+        sharedPreferences.putInt("playerTurn", 0)
+        sharedPreferences.apply()
+
         recreate()
     }
 
@@ -473,10 +555,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         continuer.visibility = View.VISIBLE
 
         do {
-            if (playerPlay in 1..3) {
+            if (playerPlay in 1 until playerNumber) {
                 playerPlay -= 1
             } else {
-                playerPlay = 3
+                playerPlay = playerNumber - 1
             }
         } while (playerFinishTest[playerPlay] == 1)
 
@@ -514,6 +596,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         diceResultText.visibility = View.INVISIBLE
         diceAffichage.visibility = View.INVISIBLE
         blurLayout.visibility = View.INVISIBLE
+        Log.i("Test", "HideDiceResult")
     }
 
     private fun changeButtonColor() {
@@ -549,6 +632,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (case == playerScoreList[3]) {
             testCaseClear += 1
         }
+        if (case == playerScoreList[4]) {
+            testCaseClear += 1
+        }
+        if (case == playerScoreList[5]) {
+            testCaseClear += 1
+        }
 
         return testCaseClear
     }
@@ -559,8 +648,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         Quand les 4 joueurs sont arrivés à la fin, un message s'affiche pour les féliciter et un bouton apparait pour recommencer.
          */
-
-        if (playerFinishTest[0] == 1 && playerFinishTest[1] == 1 && playerFinishTest[2] == 1 && playerFinishTest[3] == 1) {
+        Log.i("Test", "Presque")
+        if (playerFinishTest[0] == 1 && playerFinishTest[1] == 1 && playerFinishTest[2] == 1 && playerFinishTest[3] == 1 && playerFinishTest[4] == 1 && playerFinishTest[5] == 1) {
             dé.visibility = View.INVISIBLE
             continuer.visibility = View.GONE
 
@@ -571,7 +660,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             textAffichage.visibility = View.VISIBLE
             caseAffichage.visibility = View.VISIBLE
+
+            isFinish = 1
+
+            Log.i("Test", "Fait")
         }
+
+        Log.i("Test", "Réussi")
     }
 
     private fun nextPlayerTurn () {
@@ -581,11 +676,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         Permet de passer au playerTurn suivant. Si le playerTurn est entre 0 et 2 alors il est augmenté de 1,
         sinon s'il est égal à 3 il est redescendu à 0.
          */
-
-        if (playerTurn in 0..2) {
-            playerTurn += 1
-        }else {
-            playerTurn = 0
+        if (isFinish == 0) {
+            if (playerTurn in 0 until playerNumber - 1) {
+                playerTurn += 1
+            } else {
+                playerTurn = 0
+            }
         }
     }
 
@@ -595,17 +691,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         Si le joueur du playerTurn a déjà fini alors le playerTurn est augmenté ou remis à 0 jusqu'à ce que le joueur du playerTurn ai fini.
          */
-
-        if (playerFinishTest[playerTurn] == 1) {
-            while (playerFinishTest[playerTurn] == 1) {
-                nextPlayerTurn()
+        if (isFinish == 0) {
+            if (playerFinishTest[playerTurn] == 1) {
+                while (playerFinishTest[playerTurn] == 1) {
+                    nextPlayerTurn()
+                    Log.i("Test", "IsPlayerAlreadyFinished")
+                }
             }
         }
     }
 
     private fun saveScore() {
         val sharedPreferences = getSharedPreferences("fr.cornier.lepetitflo", Context.MODE_PRIVATE).edit()
-        for (i in 0..3) {
+        for (i in 0..5) {
             sharedPreferences.putInt("score$i", playerScoreList[i])
         }
         sharedPreferences.putInt("playerTurn", playerTurn)
@@ -614,15 +712,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun getScore() {
         val sharedPreferences = getSharedPreferences("fr.cornier.lepetitflo", Context.MODE_PRIVATE)
-        for (i in 0..3) {
+        for (i in 0..5) {
             playerScoreList[i] = sharedPreferences.getInt("score$i", 0)
+            if (playerScoreList[i] != 0 && playerScoreList[i] != 25) {
+                caseList[playerScoreList[i]].setBackgroundResource(R.drawable.player_case)
+                movePlayer(i, isCaseClear(playerScoreList[i]))
+            }else {
+                movePlayer(i, i + 1)
+            }
         }
         playerTurn = sharedPreferences.getInt("playerTurn", 0)
     }
 
+    private fun getPlayerNumber() {
+        val sharedPreferences = getSharedPreferences("fr.cornier.lepetitflo", Context.MODE_PRIVATE)
+        playerNumber = sharedPreferences.getInt("playerNumber", 4)
+    }
+
     fun onRestartIconClick(button: View) {
         val sharedPreferences = getSharedPreferences("fr.cornier.lepetitflo", Context.MODE_PRIVATE).edit()
-        for (i in 0..3) {
+        for (i in 0..5) {
             sharedPreferences.putInt("score$i", 0)
         }
         sharedPreferences.putInt("playerTurn", 0)
