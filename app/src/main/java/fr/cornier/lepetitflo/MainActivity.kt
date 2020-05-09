@@ -88,13 +88,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(intent)
             }
             R.id.nav_index -> {
-                Toast.makeText(this, "Index clicked", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, IndexActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_about -> {
-                Toast.makeText(this, "About clicked", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, AboutActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_quit -> {
-                Toast.makeText(this, "About clicked", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "About clicked", Toast.LENGTH_LONG).show()
                 finish()
                 exitProcess(0)
             }
