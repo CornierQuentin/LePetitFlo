@@ -8,10 +8,7 @@ Le principe est simple, chaque joueur lance son dé ce qui le positionne sur une
 
 Ecran principal | Menu | Joueurs
 -|-|-
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Ecran principal")
-
-
-Développé par Quentin Cornier\n\nSur une idée originale de Floriane Renier et Alexandre Cornier"
+![alt text](https://github.com/CornierQuentin/LePetitFlo/blob/master/Screenshots/Ecran_principal.png "Ecran principal") | ![alt text](https://github.com/CornierQuentin/LePetitFlo/blob/master/Screenshots/Menu.png "Menu") | ![alt text](https://github.com/CornierQuentin/LePetitFlo/blob/master/Screenshots/Joueurs.png "Joueurs")
 
 ## Pour Commencer
 
