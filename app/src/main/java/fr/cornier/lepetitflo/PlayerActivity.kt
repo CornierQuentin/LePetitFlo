@@ -13,14 +13,14 @@ import kotlinx.android.synthetic.main.activity_player.*
 
 class PlayerActivity : AppCompatActivity() {
 
-    private val pickerValues = arrayOf("2", "3", "4", "5", "6")
-    private val playerValue = arrayOf(2, 3, 4, 5, 6)
+    private val pickerValues = arrayOf("1", "2", "3", "4", "5", "6")
+    private val playerValue = arrayOf(1, 2, 3, 4, 5, 6)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
 
-        numberPicker.maxValue = 4
+        numberPicker.maxValue = 5
         numberPicker.minValue = 0
 
         numberPicker.displayedValues = pickerValues
