@@ -6,6 +6,11 @@ L'idée est née pendant le confinement où nous avons pris l'habitude de faire 
 
 Le principe est simple, chaque joueur lance son dé ce qui le positionne sur une case où il découvre les exercices que tous les participants doivent faire. Il y a quelques pièges, retour au début, retour en arrière de quelques cases. La session est terminée quand tous les joueurs sont arrivés.
 
+Ecran principal | Menu | Joueurs
+-|-|-
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Ecran principal")
+
+
 Développé par Quentin Cornier\n\nSur une idée originale de Floriane Renier et Alexandre Cornier"
 
 ## Pour Commencer
