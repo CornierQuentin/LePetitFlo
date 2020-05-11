@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+        <item
+            android:id="@+id/nav_restart"
+            android:icon="@drawable/ic_restart"
+            android:title="Redémarrer" />
+        <item
+            android:id="@+id/nav_player"
+            android:icon="@drawable/ic_player"
+            android:title="Joueur" />
+        <item
+            android:id="@+id/nav_index"
+            android:icon="@drawable/ic_index"
+            android:title="Index" />
+    </group>
+
+
+    <item android:title="Application Settings">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_about"
+                android:title="À Propos"/>
+            <item
+                android:id="@+id/nav_quit"
+                android:icon="@drawable/ic_quit"
+                android:title="Quitter"/>
+        </menu>
+    </item>
+</menu>
