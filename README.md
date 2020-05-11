@@ -26,7 +26,7 @@ Il n'y a pas de pré-requis en dehors des logiciels et connaissances afférant �
 
 ### Installation
 
-Il faut cloner ce repository depuis Android Studio
+Pour installer ce projet il vous faut cloner le repository, puis ensuite ouvrir le fichier [Android](https://github.com/CornierQuentin/LePetitFlo/tree/master/Android) dans android studio. Après cela il ne vous reste plus qu'à lancer l'émulateur et le programme tourne.
 
 ```
 https://github.com/CornierQuentin/LePetitFlo.git
